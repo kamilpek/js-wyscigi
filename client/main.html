@@ -1,0 +1,59 @@
+<head>
+  <title>Techniki Internetowe 2015/2016</title>
+
+  <link href="./bootstrap.min.css" rel="stylesheet">
+  <link href="./jumbotron.css" rel="stylesheet">
+</head>
+
+<body role="document">
+    <div class="container" role="main">
+      <div class="header clearfix">
+        <h3 class="text-muted">Wyścigi - gra multiplayer</h3>
+      </div>
+      {{> gra}}
+    <hr>
+  <footer>
+    <p>&copy; 2016 Kamil Pek [231050]</p>
+  </footer>
+</div>
+</body>
+
+<template name="gra">
+  <div class="jumbotron">
+    <h2> Witam w grze! </h2>
+    <p class="lead">Gra multpilayer Wyścigi, polegająca na jak najszybszym osągnięciu odpowiedzniego do poziomu liczby, poprzez zwiększanie licznika liczbami pseudolosowymi od 1 do 10, naciskając jeden przycisk.</p>
+    <p class="lead"><b>Dostępne poziomy:</b> 1. Łatwy: 100 punktów, 2. Średni: 200 punktów, 3. Trudny: 300 punktów.</p>
+    <button id="btndolacz" class="btn btn-lg btn-success">Dołącz do Gry!!</button>
+    <button id="btnnowagra" class="btn btn-lg btn-danger">Nowa Gra!!</button>
+  </div>
+  <hr>
+
+  <div><center>
+    <h3> Wybierz poziom trudności: </h3>
+    <button id="btnpoziom1" class="btn btn-success">1. Łatwy</button>
+    <button id="btnpoziom2" class="btn btn-warning">2. Średni</button>
+    <button id="btnpoziom3" class="btn btn-danger">3. Trudny</button>
+    <h4>Wybrany poziom: {{poziom}}</h4>
+  </center></div>
+  <hr>
+
+  <div class="row">
+  <div class="col-md-6"><center>
+    <h2> {{gracz1}} punktów. </h2>
+    <h3> Gracz 1 </h3>
+    <button id="btngracz1" class="btn btn-lg btn-primary">Kliknij!</button>
+  </center></div>
+
+  <div class="col-md-6"><center>
+    <h2> {{gracz2}} punktów. </h2>
+    <h3> Gracz 2 </h3>
+    <button id="btngracz2" class="btn btn-lg btn-primary">Kliknij!</button>
+  </center></div>
+   </div>
+
+   <div class="row">
+     <div class="col-md-12"><center>
+       <h2> Wygrał Gracz {{wygrany}} </h2>
+     </center></div>
+   </div>
+</template>
