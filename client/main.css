@@ -1,8 +1,1 @@
-body {
-	background-image: url("pattern.jpg");
-	background-repeat: repeat;
-	background-position:right top;
-	background-attachment: fixed;
-	background-origin: initial;
-	background-clip: initial;
-}
+@charset "UTF-8";
