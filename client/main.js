@@ -64,7 +64,7 @@ if (Meteor.isClient){
     },
     'click #btngracz1'(event, instance) {
       var g1a = instance.gracz1.get();
-      var g1b = Math.floor((Math.random() * 10) + 1);
+      var g1b = Math.floor((Math.random() * 5) + 1);
       var g1wynik = g1a + g1b;
       var g1 = Punkty.findOne({name:"gracz1"})
       Punkty.update({_id: g1._id}, { $set: { score: g1wynik }} );
@@ -74,10 +74,27 @@ if (Meteor.isClient){
       var g2pkt = Punkty.findOne({"name":"gracz2"}, {"score":1, "_id":0});
       var pkt2 = g2pkt.score;
       instance.gracz2.set(pkt2);
+      var wygpkt = Punkty.findOne({"name":"wygral"}, {"score":1, "_id":0});
+      var wpkt = wygpkt.score;
+      instance.wygrany.set(wpkt);
+      if(wpkt > 0){
+        var gr1 = Punkty.findOne({name:"gracz1"});
+        var gr2 = Punkty.findOne({name:"gracz2"});
+        var poz = Punkty.findOne({name:"poziom"});
+        Punkty.remove({_id: gr1._id});
+        Punkty.remove({_id: gr2._id});
+        Punkty.remove({_id: poz._id});
+        Punkty.insert({ name: "gracz1", score: 0});
+        Punkty.insert({ name: "gracz2", score: 0});
+        Punkty.insert({ name: "poziom", score: 0});
+        instance.gracz1.set(0);
+        instance.gracz2.set(0);
+        instance.poziom.set(0);
+      }
       if(g1wynik >= poziom) {
         instance.gracz1.set(0);
         instance.gracz2.set(0);
-        var wyg1 = Punkty.findOne({name:"wygral"})
+        var wyg1 = Punkty.findOne({name:"wygral"});
         Punkty.update({_id: wyg1._id}, { $set: { score: 1 }} );
         var wyg1pkt = Punkty.findOne({"name":"wygral"}, {"score":1, "_id":0});
         var wpkt1 = wyg2pkt.score;
@@ -86,7 +103,7 @@ if (Meteor.isClient){
     },
     'click #btngracz2'(event, instance) {
       var g2a = instance.gracz2.get();
-      var g2b = Math.floor((Math.random() * 10) + 1);
+      var g2b = Math.floor((Math.random() * 5) + 1);
       var g2wynik = g2a + g2b;
       var g2 = Punkty.findOne({name:"gracz2"})
       Punkty.update({_id: g2._id}, { $set: { score: g2wynik }} );
@@ -96,6 +113,23 @@ if (Meteor.isClient){
       var g2pkt = Punkty.findOne({"name":"gracz2"}, {"score":1, "_id":0});
       var pkt2 = g2pkt.score;
       instance.gracz2.set(pkt2);
+      var wygpkt = Punkty.findOne({"name":"wygral"}, {"score":1, "_id":0});
+      var wpkt = wygpkt.score;
+      instance.wygrany.set(wpkt);
+      if(wpkt > 0){
+        var gr1 = Punkty.findOne({name:"gracz1"});
+        var gr2 = Punkty.findOne({name:"gracz2"});
+        var poz = Punkty.findOne({name:"poziom"});
+        Punkty.remove({_id: gr1._id});
+        Punkty.remove({_id: gr2._id});
+        Punkty.remove({_id: poz._id});
+        Punkty.insert({ name: "gracz1", score: 0});
+        Punkty.insert({ name: "gracz2", score: 0});
+        Punkty.insert({ name: "poziom", score: 0});
+        instance.gracz1.set(0);
+        instance.gracz2.set(0);
+        instance.poziom.set(0);
+      }
       if(g2wynik >= poziom) {
         instance.gracz1.set(0);
         instance.gracz2.set(0);
@@ -118,7 +152,7 @@ if (Meteor.isClient){
       Punkty.insert({ name: "gracz1", score: 0});
       Punkty.insert({ name: "gracz2", score: 0});
       Punkty.insert({ name: "wygral", score: 0});
-      Punkty.insert({ name: "poziom", score: 0});wyg
+      Punkty.insert({ name: "poziom", score: 0});
       instance.gracz1.set(0);
       instance.gracz2.set(0);
       instance.wygrany.set(0);
